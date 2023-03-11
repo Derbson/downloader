@@ -2,7 +2,7 @@ import sys
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel
 from window import Window, UrlInput, Button, Label
 from style import setupTheme
-from downloader import downlaod
+from downloader import downlaod, validator_url
 
 
 
@@ -25,8 +25,8 @@ if __name__ == '__main__':
     # texturl
     text = url.urlText
     
-    
     # exec
-    button.clickedButtonConnect(lambda: downlaod(text()))
+    if text() is not None:
+        button.clickedButtonConnect(lambda: downlaod(text()))
     window.show()
     app.exec()
